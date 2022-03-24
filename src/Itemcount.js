@@ -1,36 +1,46 @@
 import {useState} from "react";
+import {Link} from "react-router-dom"
 
 
 
 function Counter({ stock, initial, OnAdd}) {
-  const [contador, setContador] = useState(initial);
+
+  const [cantidad, setCantidad] = useState(initial);
+  const [show, setShow] = useState(true)
 
 
-  const aumentarContador = () => {
-    if (contador < stock) setContador(contador + 1);
+  const aumentarCantidad = () => {
+    if (cantidad < stock) setCantidad(cantidad + 1);
   };
 
-  const disminuirContador = () => {
-    if (contador > initial) setContador(contador - 1);
+  const disminuirCantidad = () => {
+    if (cantidad > initial) setCantidad(cantidad - 1);
   };
 
-  const AddItem =() =>{
-    OnAdd (contador)
+  const AddItem = () =>{
+    OnAdd(cantidad)
+    setShow(false)
   }
+
+
   return (
     <div>
-      <div className="Counter"> <button type="button" onClick={disminuirContador}>
+      {show?(<div className="Counter"> <button type="button" onClick={disminuirCantidad}>
         -
       </button>
-      <p className="Cantidad">Cantidad {contador}</p>
+      <p className="Cantidad">Cantidad {cantidad}</p>
      
-      <button type="button" onClick={aumentarContador}>
+      <button type="button" onClick={aumentarCantidad}>
         +
-      </button></div>
+      </button><button onClick={AddItem}>Agregar al Carrito</button></div>):
+      <Link to="/cart"> Ir al Carrito</Link>
+      
+      }
+      
   
 
       
-      <button onClick={AddItem}>Agregar al Carrito</button>
+      
 
     </div>
   );

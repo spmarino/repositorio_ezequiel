@@ -11,6 +11,8 @@ function Navbar(){
            <Link style={{margin:"10px"}}to="/categoria/2">categoria 2</Link>
 
            <Link style={{margin:"10px"}}to="/categoria/3">categoria 3</Link>
+
+           <Link style={{margin:"10px"}}to="/cart">cart</Link>
            
         </ul>
     </nav>

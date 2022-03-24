@@ -101,7 +101,7 @@ function ItemDetailContainer() {
 
   return (
     <>
-    {!loading?<p>...Loading</p>:<ItemDetail product={product} />}
+    {!loading?<p>...Loading</p>:<ItemDetail item={product} />}
     </>
   )
 }

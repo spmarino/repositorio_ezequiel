@@ -1,21 +1,24 @@
-import React from 'react'
-import Counter from "./Itemcount"
+import React from "react";
+import Counter from "./Itemcount";
+import { UseCartContext } from "./CartContext";
 
-function ItemDetail({product}) {
-    const {name, price, stock, image} = product
+function ItemDetail({ item }) {
+  const { name, price, stock, image } = item;
+  const { AddItem } = UseCartContext();
 
-    const OnAdd = (contador) => {
-console.log({contador, product})
-    }
+  const OnAdd = (cantidad) => {
+    AddItem(item, cantidad);
+  };
+
   return (
     <div>
-        <p>{name}</p>
-        <p>Price : {price}</p>
-        <p>Stock : {stock}</p>
-        <img src={image} alt={name}/>
-        <Counter stock={stock} initial={1} OnAdd={OnAdd}/>
+      <p>{name}</p>
+      <p>Price : {price}</p>
+      <p>Stock : {stock}</p>
+      <img src={image} alt={name} />
+      <Counter stock={stock} initial={1} OnAdd={OnAdd} />
     </div>
-  )
+  );
 }
 
-export default ItemDetail
+export default ItemDetail;
