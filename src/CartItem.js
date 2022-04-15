@@ -10,8 +10,8 @@ const CartItem = ({ Item, Quantity }) => {
   const total = price * Quantity;
 
   return (
-    <div>
-      <img style={{width:"50px", heigth:"auto"}} src={image} alt={title} />
+    <div className="cartProducto">
+      <img style={{width:"150px", heigth:"auto"}} src={image} alt={title} />
       <h4>{title}</h4>
       <h4> {Quantity} Units</h4>
       <h4> U$D {total}</h4>

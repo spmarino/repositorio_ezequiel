@@ -3,7 +3,7 @@ import Counter from "./Itemcount";
 import { UseCartContext } from "./CartContext";
 
 function ItemDetail({ item }) {
-  const { name, price, stock, image } = item;
+  const { name, price, stock, image, descripcion} = item;
   const { AddItem } = UseCartContext();
 
   const OnAdd = (cantidad) => {
@@ -11,11 +11,12 @@ function ItemDetail({ item }) {
   };
 
   return (
-    <div>
+    <div className="ItemDetail">
       <p>{name}</p>
       <p>Price : {price}</p>
       <p>Stock : {stock}</p>
-      <img src={image} alt={name} />
+      <img style={{width:"400px", height:"auto"}} src={image} alt={name} />
+      <p>{descripcion}</p>
       <Counter stock={stock} initial={1} OnAdd={OnAdd} />
     </div>
   );

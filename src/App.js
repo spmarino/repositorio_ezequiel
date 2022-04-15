@@ -5,6 +5,8 @@ import Navbar from "./Navbar";
 import { createContext } from "react";
 import CartContextProvider from "./CartContext";
 import Cart from "./Cart";
+import "./App.css"
+import Header from "./Header";
 
 
 
@@ -14,6 +16,7 @@ function App() {
   return (
     <CartContextProvider>   
     <BrowserRouter>
+    <Header />
     <Navbar />
     <Routes>
       <Route path="/" element={<ItemListContainer/>}/>

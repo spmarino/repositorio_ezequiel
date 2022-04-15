@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 
 function Navbar(){
     return(
-        <nav>
+        <nav className="Nav">
         <ul>
-           <Link style={{margin:"10px"}}to="/">inicio</Link>
+           <Link  className="navlink" style={{margin:"10px"}}to="/">HOME</Link>
 
-           <Link style={{margin:"10px"}}to="/categoria/1">categoria 1</Link>
+           <Link className="navlink" style={{margin:"10px"}}to="/categoria/1">Jordan</Link>
 
-           <Link style={{margin:"10px"}}to="/categoria/2">categoria 2</Link>
+           <Link className="navlink" style={{margin:"10px"}}to="/categoria/2">Lebron</Link>
 
-           <Link style={{margin:"10px"}}to="/categoria/3">categoria 3</Link>
+           <Link className="navlink" style={{margin:"10px"}}to="/categoria/3">Kyrie</Link>
 
-           <Link style={{margin:"10px"}}to="/cart">cart</Link>
+           <Link className="navlink" style={{margin:"10px"}}to="/cart">Cart</Link>
            
         </ul>
     </nav>
