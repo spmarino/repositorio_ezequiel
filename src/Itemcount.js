@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 
 
 
+
 function Counter({ stock, initial, OnAdd}) {
 
   const [cantidad, setCantidad] = useState(initial);
@@ -18,6 +19,7 @@ function Counter({ stock, initial, OnAdd}) {
   };
 
   const AddItem = () =>{
+
     OnAdd(cantidad)
     setShow(false)
   }

@@ -1,3 +1,4 @@
+import { serverTimestamp } from "firebase/firestore";
 import { useState, React, createContext, useContext } from "react";
 
 const CartContext = createContext([]);
@@ -37,8 +38,7 @@ const CartContextProvider = ({ children }) => {
   const DelItem = (id) => {
     const items = CartList.filter((i) => i.item.id !== id);
     SetCartList(items);
-  };
-
+  }
   const EmptyCart = () => {
     SetCartList([]);
   };
