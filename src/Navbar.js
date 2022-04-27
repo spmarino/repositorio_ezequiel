@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import {UseCartContext} from './CartContext'
+
+
 
 function Navbar(){
+
+    const {  CartList, IconCart } = UseCartContext();
     return(
-        <nav className="Nav">
+        <div className="Nav">
         <ul>
            <Link  className="navlink" style={{margin:"10px"}}to="/">HOME</Link>
 
@@ -12,10 +17,11 @@ function Navbar(){
 
            <Link className="navlink" style={{margin:"10px"}}to="/categoria/3">Kyrie</Link>
 
-           <Link className="navlink" style={{margin:"10px"}}to="/cart">Cart</Link>
-           
+           <Link className="navlink" style={{margin:"10px"}}to="/cart">Cart   {CartList.length< 1 ? ( " " ): IconCart()} </Link>
+
+          
         </ul>
-    </nav>
+    </div>
     );
 };
 export default Navbar

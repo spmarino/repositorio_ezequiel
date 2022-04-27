@@ -10,11 +10,11 @@ import{db} from"./firebase"
 const Cart = () => {
   const { CartList, EmptyCart, PriceTotal } = UseCartContext();
   const [loading, setLoading] = useState(true);
-  const[order,setOrder]=useState(false)
+  const[order,setOrder]= useState()
 
   
 
-const createOrder=async(e)=>{
+const createOrder = async(e)=>{
   e.preventDefault();
   setOrder(true)
   console.log("click");
@@ -57,8 +57,9 @@ total:CartList.reduce((acc,i)=>(acc=(i.item.price * i.cantidad)),0)
         <div>
           <h2>Cart</h2>
 
-          {CartList.length < 1 ? (
-            <h2>You have no items in your shopping cart</h2>
+          {CartList.length < 1 ? (<div> <h2>You have no items in your shopping cart</h2>  <h4>ORDER:</h4>
+            {!order?<p>"Aún no realizó una compra" </p> : <p> Su número de orden es {order}</p>}</div>
+            
           ) : (
             <div>
               <div>
@@ -77,7 +78,8 @@ total:CartList.reduce((acc,i)=>(acc=(i.item.price * i.cantidad)),0)
               <button onClick={createOrder}>
                 Checkout</button>
             {/* {order && <p> Order:{order}</p>} */}
-            <h4>ORDER:{order}</h4>
+          
+
 
             </div>
           )}
