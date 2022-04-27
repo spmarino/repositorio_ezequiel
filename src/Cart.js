@@ -1,41 +1,56 @@
-import { React, useState } from "react";
-import { UseCartContext } from "./CartContext";
-import CartItem from "./CartItem";
-import { toast } from "react-toastify";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "./firebase";
+import {React, useState} from 'react'
+import {UseCartContext} from './CartContext'
+import CartItem from './CartItem'
+import { getDocs,collection,addDoc,serverTimestamp } from 'firebase/firestore'
+import{db} from"./firebase"
+
+
 
 
 const Cart = () => {
   const { CartList, EmptyCart, PriceTotal } = UseCartContext();
   const [loading, setLoading] = useState(true);
+  const[order,setOrder]=useState(false)
 
+  
 
-  const createOrder = () => {
-    const order = {
-      buyer: {
-        nombre: "comprador anonimo",
-        telefono: "193029482",
-        email: "email@gmail.com",
-      },
-      item: CartList,
-      date: serverTimestamp(),
-    };
+const createOrder=async(e)=>{
+  e.preventDefault();
+  setOrder(true)
+  console.log("click");
+  const order={
+    buyer:{
+      nombre: "comprador anonimo",
+      telefono:"193029482",
+      email:"email@gmail.com"
+    },
+item:CartList,
+date:serverTimestamp(),
+total:CartList.reduce((acc,i)=>(acc=(i.item.price * i.cantidad)),0)
+}
+    const ordenesCollection= collection(db,"ordenes")
+    const pedido= addDoc(ordenesCollection,order)
 
-    const ordenesCollection = collection(db, "ordenes");
-    const pedido = addDoc(ordenesCollection, order);
-    
-    pedido.then(res => toast.success(`id generado ${res.id}`))
-      .catch((err) => console.log("error"))
-      .finally(() => EmptyCart());
-  };
+  pedido
+  .then((res)=>{
+    console.log(res.id);
+    setOrder(res.id)
+    console.log("tu compra fue un exito");
+  })
+  .catch((error)=>{
+    console.log("error");
+  })
+  .finally((res)=>{
+    EmptyCart()
+  })
+}
 
   setTimeout(() => {
     setLoading(false);
   }, 2000);
 
   return (
-    <div className="CartFormat">
+    <div className='CartFormat'>
       {loading ? (
         <h1>Loading..</h1>
       ) : (
@@ -59,7 +74,11 @@ const Cart = () => {
               </div>
               <button onClick={EmptyCart}>Empty Cart</button>
               <h2>Total: {PriceTotal()} U$D</h2>
-              <button onClick={createOrder}>Checkout</button>
+              <button onClick={createOrder}>
+                Checkout</button>
+            {/* {order && <p> Order:{order}</p>} */}
+            <h4>ORDER:{order}</h4>
+
             </div>
           )}
         </div>
@@ -68,4 +87,6 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+
+
+export default Cart
